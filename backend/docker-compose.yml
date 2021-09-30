@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+    container_name: backend_nestjs
+
+  postgres:
+    container_name: postgres
+    image: postgres:13.4-bullseye
+    ports:
+    - '5432:5432'
+    volumes:
+    - /data/postgres:/data/postgres
+    env_file:
+    - .env.postgres
+    networks:
+    - postgres
+
+  pgadmin:
+    links:
+    - postgres:postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4:5.7
+    ports:
+    - "8080:80"
+    volumes:
+    - /data/pgadmin:/root/.pgadmin
+    env_file:
+    - .env.postgres
+    - .env.pgadmin
+    networks:
+    - postgres
+
+networks:
+  postgres:
+    driver: bridge
