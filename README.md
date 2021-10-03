@@ -1,6 +1,8 @@
 # Programming Integration Project
 
-## Clone the repo
+## Getting started
+
+### Clone the repo
 
 - HTTPS
 
@@ -14,23 +16,40 @@ git clone https://github.com/Smithienious/CO3103-Proj.git -b dev --depth 1
 git clone git@github.com:Smithienious/CO3103-Proj.git -b dev --depth 1
 ```
 
-In the case you have already cloned the repo
+In the case you have already cloned the repo, switch to the `dev` branch.
 
 ```bash
 git switch dev
 ```
+
+### Setup dev environment with VSCode
+
+- Change working directory
+
+```bash
+cd CO3103-Proj
+```
+
+- Open VSCode
+
+```bash
+code .
+```
+
+- Install [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
+- Open command palette (F1, Ctrl Shift P) > `Remote-Containers: Rebuild and Reopen in Container`
+
+## FAQ
+
+### Why do we use devcontainer?
+
+TODO
 
 ## Useful resources
 
 - [wanago.io](https://wanago.io/2020/05/18/api-nestjs-postgresql-typeorm/)
 
 <!--
-## Change working directory
-
-```bash
-cd tfc-backend
-```
-
 ## (Recommended) Initialize a virtual environment
 
 ```bash
