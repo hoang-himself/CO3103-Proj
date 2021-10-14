@@ -1,0 +1,206 @@
+\documentclass[a4paper]{article}
+
+% Global layout
+\usepackage{fancyhdr, graphicx, hyperref, indentfirst, lastpage, setspace}
+\usepackage{geometry}
+
+% Encoding
+\usepackage[utf8]{vntex, inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, gensymb}
+
+% Better table
+\usepackage{array, booktabs, multicol, multirow, siunitx, tabularx}
+
+% Code space
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{minted, verbatim} % needs --shell-escape flag and Pygments
+
+% Graphics
+\usepackage{caption, float}
+
+% Bullets & numbering
+\usepackage{enumitem}
+
+% Page setup
+\allowdisplaybreaks{} % to have page breaks inside align* environment
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=red,colorlinks=true}
+\usemintedstyle{emacs}
+\numberwithin{equation}{section}
+\renewcommand{\arraystretch}{1.2} % space between table rows
+
+% Global style setup
+\makeatletter % change font size for not having underfull hbox
+\renewcommand\Huge{\@setfontsize\Huge{22pt}{18}}
+\makeatother
+
+\AtBeginDocument{\renewcommand*\contentsname{Contents}}
+\AtBeginDocument{\renewcommand*\refname{References}}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+  \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{./assets/hcmut.png}}
+    \end{picture}
+    \begin{tabular}{l}
+      \textbf{\bf \ttfamily University of Technology, Ho Chi Minh City}\\
+      \textbf{\bf \ttfamily Faculty of Computer Science and Engineering}
+    \end{tabular}
+  \end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+		\tiny \bf \\
+		\tiny \bf
+	\end{tabular}  }
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Programming Integration Project --- Academic year 2021--2022}
+\fancyfoot[R]{\scriptsize \ttfamily Page {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+% \everymath{\color{blue}}
+
+\newcommand*\mean[1]{\bar{#1}}
+\newenvironment{code}[1]
+{\VerbatimEnvironment%
+  \begin{mdframed}[leftline=false,rightline=false,backgroundcolor=magenta!10,nobreak=false]%
+    \begin{minted}[linenos=true,breaklines,breaksymbolleft=,obeytabs=true,tabsize=2]{#1}%
+}
+{
+    \end{minted}%
+  \end{mdframed}%
+}
+
+\begin{document}
+
+\begin{titlepage}
+  \begin{center}
+    VIETNAM NATIONAL UNIVERSITY, HO CHI MINH CITY \\
+    UNIVERSITY OF TECHNOLOGY \\
+    FACULTY OF COMPUTER SCIENCE AND ENGINEERING
+  \end{center}
+
+  \vspace{1cm}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{./assets/hcmut.png}
+  \end{figure}
+
+  \vspace{1cm}
+
+  \begin{center}
+    \begin{tabular}{c}
+      \textbf{\Large Programming Integration Project (CO3103)} \\
+      {}                                                       \\
+      \midrule                                                 \\
+      \textbf{\Large Project Report: Phase 1}                  \\
+      {}                                                       \\
+      \textbf{\Huge Online Shopping Website}                   \\   % Sales website                            \\
+      {}                                                       \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \vspace{3cm}
+
+  \begin{table}[h]
+    \begin{tabular}{rl}
+      \hspace{1cm} Advisor: & Prof.\ Quản Thành Thơ \\
+    \end{tabular}
+  \end{table}
+
+  \begin{center}
+    {\footnotesize HO CHI MINH CITY, OCTOBER 2021}
+  \end{center}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+%\thispagestyle{empty}
+\section*{Member list}
+\begin{center}
+  \begin{tabular}{llc}
+    \toprule
+    \textbf{No.} & \textbf{Full name} & \textbf{Student ID} \\
+    \midrule
+    1            & Nguyễn Hoàng       & 1952255             \\
+    2            & Nguyễn Chính Khôi  & 1952793             \\
+    3            & Vũ Anh Nhi         & 1952380             \\
+    4            & Lương Duy Hưng     & 1952747             \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\newpage
+
+\section{Topic}
+This project focuses on creating a web-based application that allows users or customers to browse and make transactions.
+The specific genre of product is phone, primarily smart mobile device. \\
+
+This e-commerce application is analogous to real life phone selling retailers that require a more convenient and efficient way for customers to interact with their products.
+Because of that, the requirements and features will mainly focus on practical demands as if it was proposed to solve the problem.
+
+\section{Proposed Features}
+\begin{center}
+  \begin{tabular}{*{2}{l}}
+    \toprule
+    Name                             & Descriptions                                      \\
+    \midrule
+    Get news \& offers               & Display current news and offers                   \\
+    View catalog                     & Display list of products                          \\
+    Place orders                     & Customers can add items to their cart             \\
+    Member account authentication    & Login with username and password, (optional: SSO) \\
+    Member account balance \& points & Save  purchases to calculate points               \\
+    Create coupons                   & Validate coupons when checking out                \\
+    Display statistics               & Monthly sales of reports (Optional)               \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+\section{Technologies}
+
+% Advantages/ Disadvantages
+% Reasons why we choose this
+% Basic features
+
+We decided to make the backend serve a RESTful API, so that we can decouple the server and client as well as ensuring ease of scale should that ever happen.
+With that said, we chose to demonstrate this project as a web application.
+
+\begin{enumerate}[label=\alph*.]
+
+  \item Frontend: \textbf{React}
+
+        React (React.js or ReactJS) is a free and open-source front-end JavaScript library for building user interfaces or UI components.
+        Developed at Facebook and released in 2013, it can be said that React has been the most influential UI library of recent years.
+
+        We use React to build components that represent logical reusable parts of the UI\@.
+        The beauty of React is that the simplicity of building a component has been brought down to its theoretical minimum: a Javascript function.
+        The return value from these functions is the HTML or UI, which is written in a special syntax called JSX, allowing easy combination of Javascript with Html markup.
+
+        The main reason we want to use React is not the library itself but the massive ecosystem surrounding it.
+        React itself does not care about routing state management, animation or anything like that.
+        Instead, it lets those concerns evolve naturally within the open-source community.
+        No matter what we are trying to do, there is a good chance that a good supporting library to help us get it done has already existed.
+
+  \item Backend: \textbf{NestJS}
+
+        NestJS is a Node.js framework for building scalable server-side applications with Typescript.
+        It comes with a ton of built-in modules to work with databases, handle security, implement streaming and anything else you can imagine doing in a server-side application.
+
+        Using the NestJS CLI, you can scaffold out a new project with a code base pre-configured with Jest for testing and set up with Typescript to write more readable and reliable code.
+
+  \item Database: \textbf{PostgreSQL}
+
+        PostgreSQL is a powerful, open source object-relational database system that uses and extends the SQL language combined with many features that safely store and scale the most complicated data workloads.
+
+        With more than 30 years of active development on the core platform, PostgreSQL has earned a strong reputation for its proven architecture, reliability, data integrity and more.
+\end{enumerate}
+
+\end{document}
