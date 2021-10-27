@@ -1,0 +1,131 @@
+﻿-- INIT
+SET
+  timezone = 'Asia/Ho_Chi_Minh';
+
+CREATE TABLE "ACCOUNT" (
+  "id" INT NOT NULL,
+  "auth_provider" TEXT NOT NULL,
+  "email" TEXT NOT NULL,
+  "password" TEXT NOT NULL,
+  "first_name" TEXT NOT NULL,
+  "last_name" TEXT NOT NULL,
+  "birthday" DATE NOT NULL,
+  "male" BOOLEAN NOT NULL,
+  "address" TEXT NOT NULL,
+  "balance" INT NOT NULL,
+  "cur_point" INT NOT NULL,
+  "total_point" INT NOT NULL,
+  "date_joined" TIMESTAMP NOT NULL,
+  "role" TEXT NOT NULL
+);
+
+CREATE TABLE "PRODUCT" (
+  "id" INT NOT NULL,
+  "image" TEXT NOT NULL,
+  "brand" TEXT NOT NULL,
+  "color" TEXT NOT NULL,
+  "storage" TEXT NOT NULL,
+  "ram" TEXT NOT NULL,
+  "year" TEXT NOT NULL,
+  "camera" TEXT NOT NULL,
+  "name" TEXT NOT NULL,
+  "description" TEXT NOT NULL,
+  "price" INT NOT NULL,
+  "rem_quantity" INT NOT NULL
+);
+
+CREATE TABLE "COUPON" (
+  "code" TEXT NOT NULL,
+  "name" TEXT NOT NULL,
+  "percent_discount" INT NOT NULL,
+  "time_create" TIMESTAMPTZ NOT NULL,
+  "time_expire" TIMESTAMPTZ NOT NULL,
+  "used" BOOLEAN NOT NULL
+);
+
+CREATE TABLE "ORDER" (
+  "id" INT NOT NULL,
+  "account" INT NOT NULL,
+  "item" INT NOT NULL,
+  "coupon" TEXT NOT NULL,
+  "deliver" BOOLEAN NOT NULL,
+  "cost" INT NOT NULL,
+  "paid_at" TIMESTAMPTZ NOT NULL
+);
+
+CREATE TABLE "ORDER_ITEMS" (
+  "id" INT NOT NULL,
+  "order_id" INT NOT NULL,
+  "item_id" INT NOT NULL,
+  "quantity" INT NOT NULL,
+  "cost" INT NOT NULL
+);
+
+CREATE TABLE "DELIVERY" (
+  "id" INT NOT NULL,
+  "order" INT NOT NULL,
+  "address" TEXT NOT NULL,
+  "status" TEXT NOT NULL
+);
+
+ALTER TABLE
+  "ACCOUNT"
+ADD
+  CONSTRAINT "pk_ACCOUNT" PRIMARY KEY ("id");
+
+ALTER TABLE
+  "PRODUCT"
+ADD
+  CONSTRAINT "pk_PRODUCT" PRIMARY KEY ("id");
+
+ALTER TABLE
+  "COUPON"
+ADD
+  CONSTRAINT "pk_COUPON" PRIMARY KEY ("code");
+
+ALTER TABLE
+  "ORDER"
+ADD
+  CONSTRAINT "pk_ORDER" PRIMARY KEY ("id");
+
+ALTER TABLE
+  "ORDER_ITEMS"
+ADD
+  CONSTRAINT "pk_ORDER_ITEMS" PRIMARY KEY ("id");
+
+ALTER TABLE
+  "DELIVERY"
+ADD
+  CONSTRAINT "pk_DELIVERY" PRIMARY KEY ("id");
+
+ALTER TABLE
+  "ORDER"
+ADD
+  CONSTRAINT "fk_ORDER_account" FOREIGN KEY("account") REFERENCES "ACCOUNT" ("id");
+
+ALTER TABLE
+  "ORDER"
+ADD
+  CONSTRAINT "fk_ORDER_item" FOREIGN KEY("item") REFERENCES "PRODUCT" ("id");
+
+ALTER TABLE
+  "ORDER"
+ADD
+  CONSTRAINT "fk_ORDER_coupon" FOREIGN KEY("coupon") REFERENCES "COUPON" ("code");
+
+ALTER TABLE
+  "ORDER_ITEMS"
+ADD
+  CONSTRAINT "fk_ORDER_ITEMS_order_id" FOREIGN KEY("order_id") REFERENCES "ORDER" ("id");
+
+ALTER TABLE
+  "ORDER_ITEMS"
+ADD
+  CONSTRAINT "fk_ORDER_ITEMS_item_id" FOREIGN KEY("item_id") REFERENCES "PRODUCT" ("id");
+
+ALTER TABLE
+  "DELIVERY"
+ADD
+  CONSTRAINT "fk_DELIVERY_order" FOREIGN KEY("order") REFERENCES "ORDER" ("id");
+
+--
