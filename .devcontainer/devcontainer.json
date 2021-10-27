@@ -35,7 +35,8 @@
     "oderwat.indent-rainbow",
     "ms-vscode.vscode-typescript-next",
     "rangav.vscode-thunder-client",
-    "ms-azuretools.vscode-docker"
+    "ms-azuretools.vscode-docker",
+    "adpyke.vscode-sql-formatter"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
