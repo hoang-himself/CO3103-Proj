@@ -31,7 +31,6 @@
     "dbaeumer.vscode-eslint",
     "ms-vscode.vscode-typescript-next",
     "rangav.vscode-thunder-client",
-    "adpyke.vscode-sql-formatter"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
