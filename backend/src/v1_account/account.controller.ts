@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { throws } from 'assert';
+
 import { Account } from './account.entity';
 import { AccountService } from './account.service';
 import { AuthCredentialDto } from './dto/auth-credentials.dto';
@@ -24,6 +25,4 @@ export class AccountController {
   signIn(@Body() signInCredentialDto: SignInCredentialDto): Promise<string> {
     return this.accSer.signIn(signInCredentialDto);
   }
-
-
 }

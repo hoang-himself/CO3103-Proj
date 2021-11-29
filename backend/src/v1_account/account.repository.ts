@@ -1,10 +1,11 @@
 import { ConflictException, InternalServerErrorException } from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { sign, Sign } from 'crypto';
+
 import { Account } from './account.entity';
 import { AuthProvider } from './account.enum';
 import { AuthCredentialDto } from './dto/auth-credentials.dto';
-import * as bcrypt from 'bcrypt';
-import { sign, Sign } from 'crypto';
 import { SignInCredentialDto } from './dto/sign-in-credentials.dto';
 
 @EntityRepository(Account)
@@ -19,14 +20,14 @@ export class AccountRepository extends Repository<Account>{
   }
 
   async createUser(authCredentialDto: AuthCredentialDto): Promise<void> {
-    const {email, password, firstName} = authCredentialDto;
+    const { email, password, firstName } = authCredentialDto;
 
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const account = this.create({
       authProvider: AuthProvider.BASIC,
-      email, 
+      email,
       password: hashedPassword,
       first_name: firstName,
       last_name: "N/A",
@@ -35,14 +36,14 @@ export class AccountRepository extends Repository<Account>{
       address: "N/A",
       balance: 0,
       total_point: 0,
-      cur_point:0,
-      
+      cur_point: 0,
+
     })
     //console.log(Date.now());
     try {
       await this.save(account)
     } catch (error) {
-      if(error.code === '23505'){
+      if (error.code === '23505') {
         throw new ConflictException("User already exists")
       }
       else throw new InternalServerErrorException();
@@ -50,5 +51,5 @@ export class AccountRepository extends Repository<Account>{
 
   }
 
-  
+
 }

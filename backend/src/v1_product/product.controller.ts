@@ -1,11 +1,12 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+
 import { CreateProductDto } from './dto/createProduct.dto';
 import { Product } from './product.entity';
 import { ProductService } from './product.service';
 
-@Controller('product')
+@Controller('api/v1/product')
 export class ProductController {
-  constructor(private prodSer: ProductService) {}
+  constructor(private readonly prodSer: ProductService) { }
 
   @Get()
   getProductForHomePage(): Promise<Product[]> {
