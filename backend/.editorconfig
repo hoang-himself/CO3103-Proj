@@ -1,5 +1,6 @@
 root = true
 
+# Ordering matters
 [*]
 indent_style = space
 indent_size = 2
@@ -8,8 +9,12 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{bat,cmd,ps1,psm1}]
-end_of_line = crlf
-
 [*.json]
+indent_size = 4
 insert_final_newline = false
+
+[package*.json]
+indent_size = 2
+
+[Dockerfile]
+indent_size = 4

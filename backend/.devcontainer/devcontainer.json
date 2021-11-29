@@ -25,13 +25,15 @@
   },
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-    "usernamehw.errorlens",
-    "streetsidesoftware.code-spell-checker",
-    "editorconfig.editorconfig",
-    "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-typescript-next",
-    "rangav.vscode-thunder-client",
-  ],
+	"usernamehw.errorlens",
+	"streetsidesoftware.code-spell-checker",
+	"editorconfig.editorconfig",
+	"dbaeumer.vscode-eslint",
+	"ms-vscode.vscode-typescript-next",
+	"rangav.vscode-thunder-client",
+	"foxundermoon.shell-format",
+	"humao.rest-client"
+],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.

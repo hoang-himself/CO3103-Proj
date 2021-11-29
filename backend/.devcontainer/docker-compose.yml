@@ -1,56 +1,53 @@
 version: '3.8'
 
 volumes:
-  postgres-volume:
+    postgres-volume:
 
 networks:
-  postgres-network:
-    driver: bridge
+    postgres-network:
+        driver: bridge
 
 services:
-  project:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        VARIANT: 17.1-bullseye
-        USERNAME: node
-        USER_UID: 1000
-    init: true
-    ports:
-      - 3000:3000
-    volumes:
-      - ..:/workspace:cached
-    env_file:
-      - ../.nestjs.env
-      - ../.postgres.env
-    networks:
-      - postgres-network
-    command: sleep infinity
-    user: node
+    project:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                VARIANT: 17.1-bullseye
+                USERNAME: node
+                USER_UID: 1000
+        init: true
+        env_file:
+            - ../.env
+        volumes:
+            - ..:/workspace:cached
+        networks:
+            - postgres-network
+        command: sleep infinity
+        user: node
 
-  postgres:
-    image: postgres:14.1-bullseye
-    restart: unless-stopped
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres-volume:/var/lib/postgresql/data
-    env_file:
-      - ../.postgres.env
-    networks:
-      - postgres-network
+    postgres:
+        image: postgres:14.1-bullseye
+        restart: unless-stopped
+        ports:
+            - '5432:5432'
+        env_file:
+            - ../.env
+        volumes:
+            - postgres-volume:/var/lib/postgresql/data
+        networks:
+            - postgres-network
 
-  # pgadmin:
-  #   depends_on:
-  #     - postgres
-  #   image: dpage/pgadmin4:6.2
-  #   restart: unless-stopped
-  #   ports:
-  #     - 8080:80
-  #   volumes:
-  #     - /data/pgadmin:/root/.pgadmin
-  #   env_file:
-  #     - ../.pgadmin.env
-  #   networks:
-  #     - postgres-network
+    pgadmin:
+        depends_on:
+            - postgres
+        image: dpage/pgadmin4:6.2
+        restart: unless-stopped
+        ports:
+            - '8080:80'
+        env_file:
+            - ../.env
+        volumes:
+            - /data/pgadmin:/root/.pgadmin
+        networks:
+            - postgres-network
