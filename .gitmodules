@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/Smithienious/pip-pip.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/simplynormal/pip-mp.git

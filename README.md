@@ -22,14 +22,6 @@ In the case you have already cloned the repo, switch to the `dev` branch.
 git switch dev
 ```
 
-## TODO
-
-One command to run the entire project
-
-```bash
-docker compose up
-```
-
 ## Useful resources
 
 - [wanago.io](https://wanago.io/2020/05/18/api-nestjs-postgresql-typeorm/)
