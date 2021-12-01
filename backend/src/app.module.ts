@@ -10,6 +10,9 @@ import { AccountModule } from './v1_account/account.module';
 import { AccountController } from './v1_account/account.controller';
 import { ProductModule } from './v1_product/product.module';
 import { ProductController } from './v1_product/product.controller';
+import { GoogleService } from './auth/google.service';
+import { GoogleController } from './auth/google.controller';
+import { GoogleModule } from './auth/google.module';
 
 @Module({
   imports: [
@@ -25,8 +28,9 @@ import { ProductController } from './v1_product/product.controller';
     DatabaseModule,
     AccountModule,
     ProductModule,
+    GoogleModule,
   ],
-  controllers: [AppController, AccountController, ProductController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule { }

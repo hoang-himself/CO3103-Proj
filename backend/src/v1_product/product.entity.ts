@@ -1,41 +1,41 @@
 import { Min } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'PRODUCT' })
 export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   image: string;
 
-  @Column()
+  @Column({ nullable: true })
   brand: string;
 
-  @Column()
+  @Column({ nullable: true })
   color: string;
 
-  @Column()
+  @Column({ nullable: true })
   storage: string;
 
-  @Column()
+  @Column({ nullable: true })
   ram: string;
 
-  @Column()
+  @Column({ nullable: true })
   year: string;
 
-  @Column()
+  @Column({ nullable: true })
   camera: string;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   price: string;
 
-  @Column()
+  @Column({ nullable: true })
   rem_quantity: string;
 }

@@ -2,7 +2,7 @@ import { IsEmail, IsEnum, Min } from 'class-validator';
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 //import { AuthProvider } from './account.enum';
 
-@Entity()
+@Entity({ name: 'ACCOUNT' })
 export class Account {
   @PrimaryGeneratedColumn()
   id: number;
@@ -12,10 +12,10 @@ export class Account {
   authProvider : string;
 
   //@IsEmail()
-  @Column({unique: true})
+  @Column()
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
   @Column({ nullable: true })
@@ -24,7 +24,7 @@ export class Account {
   @Column()
   last_name: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   birthday: Date;
 
   @Column({ nullable: true })
@@ -45,4 +45,6 @@ export class Account {
   @CreateDateColumn()
   date_joined: Date;
 
+  @Column()
+  role: string;
 }

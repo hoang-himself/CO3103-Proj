@@ -7,7 +7,7 @@ import { AuthCredentialDto } from './dto/auth-credentials.dto';
 import { SignInCredentialDto } from './dto/sign-in-credentials.dto';
 
 
-@Controller('account')
+@Controller('api/v1/account')
 export class AccountController {
   constructor(private accSer: AccountService) { }
 

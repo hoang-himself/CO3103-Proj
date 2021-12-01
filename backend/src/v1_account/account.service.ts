@@ -6,6 +6,7 @@ import { AccountRepository } from './account.repository';
 import { Account } from './account.entity';
 import { AuthCredentialDto } from './dto/auth-credentials.dto';
 import { SignInCredentialDto } from './dto/sign-in-credentials.dto';
+import { GoogleLogInDto } from 'src/auth/dto/google-login.dto';
 
 @Injectable()
 export class AccountService {
@@ -22,6 +23,16 @@ export class AccountService {
     return this.accRep.createUser(authCredentialDto);
   }
 
+  async registerByGoogle(googleLogInDto: GoogleLogInDto): Promise<string>{
+    const {email, firstName, lastName} = googleLogInDto;
+    const authCredentialDto: AuthCredentialDto = {
+      email,
+      firstName,
+      password: "randompassword",
+    }
+
+    return this.accRep.saveGoogleUser(authCredentialDto, lastName);
+  }
 
 
   async signIn(signInCredentialDto: SignInCredentialDto): Promise<string> {
